@@ -1,3 +1,17 @@
-.env
-**/.env
-nul
+# Python
+__pycache__/
+*.py[cod]
+*.db
+*.sqlite
+
+# Node
+node_modules/
+.docusaurus/
+build/
+
+# Environment
+.env.local
+
+# IDE
+.vscode/
+.idea/

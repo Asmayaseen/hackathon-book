@@ -41,7 +41,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          routeBasePath: '/', // Docs at root instead of /docs/
+          routeBasePath: 'docs', // Docs under /docs/ path
           sidebarPath: './sidebars.ts',
           editUrl:
             'https://github.com/Asmayaseen/hackathon-book/tree/main/frontend/',
@@ -74,6 +74,21 @@ const config: Config = {
           label: 'Course',
         },
         {
+          to: '/chatbot',
+          label: '🤖 AI Chatbot',
+          position: 'left',
+        },
+        {
+          to: '/signup',
+          label: 'Sign Up',
+          position: 'right',
+        },
+        {
+          to: '/signin',
+          label: 'Sign In',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/Asmayaseen/hackathon-book',
           label: 'GitHub',
           position: 'right',
@@ -88,7 +103,7 @@ const config: Config = {
           items: [
             {
               label: 'Get Started',
-              to: '/intro',
+              to: '/docs/intro',
             },
           ],
         },

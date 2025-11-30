@@ -11,6 +11,7 @@ import time
 from openai import OpenAI
 from qdrant_client import QdrantClient
 from qdrant_client.models import Filter, FieldCondition, MatchValue
+from app.config import settings
 
 router = APIRouter()
 
@@ -21,7 +22,7 @@ qdrant_client = QdrantClient(
     api_key=os.getenv("QDRANT_API_KEY")
 )
 
-COLLECTION_NAME = "textbook_embeddings"
+COLLECTION_NAME = settings.qdrant_collection_name
 EMBEDDING_MODEL = "text-embedding-3-small"
 EMBEDDING_DIMENSION = 1536
 

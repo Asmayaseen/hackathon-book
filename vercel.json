@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/main.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/main.py"
+    }
+  ],
+  "env": {
+    "OPENAI_API_KEY": "@openai-api-key",
+    "OPENAI_MODEL": "gpt-4o",
+    "QDRANT_URL": "@qdrant-url",
+    "QDRANT_API_KEY": "@qdrant-api-key",
+    "SECRET_KEY": "@secret-key",
+    "DATABASE_URL": "sqlite:///./hackathon.db",
+    "ALLOWED_ORIGINS": "https://asmayaseen.github.io,https://asmayaseen.github.io/hackathon-book"
+  }
+}

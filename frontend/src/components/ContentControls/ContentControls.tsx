@@ -29,7 +29,7 @@ export default function ContentControls({ contentId, originalContent }: ContentC
   const handlePersonalize = async () => {
     if (!user) {
       alert('Please sign in to personalize content');
-      window.location.href = '/signin';
+      window.location.href = '/hackathon-book/signin';
       return;
     }
 
