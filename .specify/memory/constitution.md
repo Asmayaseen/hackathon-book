@@ -1,55 +1,159 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+Version: 0.0.0 → 1.0.0 (Initial constitution creation)
+Modified Principles: N/A (new)
+Added Sections: All 6 core principles + Performance Standards + Governance
+Removed Sections: None
+Templates Requiring Updates: ✅ All templates will inherit these principles
+Follow-up TODOs: None
+-->
+
+# Physical AI & Humanoid Robotics Textbook Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Content Quality (NON-NEGOTIABLE)
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+**Technical Accuracy & Clarity**
+- All technical content MUST be verified for accuracy before publication
+- Explanations MUST be suitable for target learners (beginner to advanced levels)
+- Code examples MUST include comprehensive inline comments and explanations
+- Terminology MUST be consistent across all modules and chapters
+- Complex concepts MUST be broken down with progressive examples
+- All robotics/AI terms MUST be defined on first use
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+**Rationale**: Educational content quality directly impacts learning outcomes. Inaccurate or unclear content wastes learner time and damages credibility.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### II. Code Standards
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+**Clean, Documented, Secure Code**
+- All code examples MUST be clean, well-structured, and follow language idioms
+- NO hardcoded secrets, API keys, or credentials (use environment variables)
+- Error handling MUST be present in all code examples (no silent failures)
+- TypeScript code MUST use strict type safety
+- Python code MUST use type hints (PEP 484)
+- All functions MUST have docstrings explaining purpose, parameters, and return values
+- Security best practices MUST be followed (input validation, sanitization, authentication)
 
-### [PRINCIPLE_6_NAME]
+**Rationale**: Students learn by example. Poor code examples teach bad habits. Security vulnerabilities in educational content create risk when students copy code to production.
 
+### III. Testing Requirements (NON-NEGOTIABLE)
 
-[PRINCIPLE__DESCRIPTION]
+**Validated, Reproducible Content**
+- All code examples MUST be tested and confirmed working before publication
+- RAG chatbot responses MUST be validated for accuracy (>85% correctness)
+- Authentication flows MUST be security-tested (no bypass vulnerabilities)
+- Content generation MUST be reproducible (same inputs → same outputs)
+- Integration tests MUST cover: chatbot queries, user authentication, content personalization, translation accuracy
+- Test data MUST be provided for all examples
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+**Rationale**: Broken code examples frustrate learners and waste time. Un-tested AI features create poor user experience. Test-first ensures reliability.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### IV. User Experience
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Fast, Accessible, Intuitive Design**
+- Page load times MUST be < 3 seconds (measured on 3G connection)
+- Design MUST be responsive for mobile, tablet, and desktop
+- Content MUST meet WCAG 2.1 AA accessibility standards
+- Navigation between modules MUST be intuitive (max 3 clicks to any chapter)
+- Chatbot integration MUST be seamless (no page reloads, instant responses)
+- Search functionality MUST return relevant results in < 1 second
+- Text selection for chatbot queries MUST work on first attempt
+- Progress indicators MUST be visible for all loading operations
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**Rationale**: Poor UX leads to learner abandonment. Accessibility ensures inclusive education. Speed impacts engagement and retention.
+
+### V. AI Integration
+
+**Accurate, Private, Ethical AI**
+- Prompt engineering MUST follow best practices (clear context, specific instructions, output formatting)
+- RAG accuracy MUST be > 85% (validated through test queries)
+- Personalization MUST respect user privacy (no sensitive data logging)
+- Translation MUST maintain technical accuracy (preserve technical terms, code blocks)
+- AI-generated content MUST be reviewed before publication
+- Chatbot responses MUST cite sources (chapter/section references)
+- User data MUST NOT be used for AI training without explicit consent
+- AI limitations MUST be disclosed to users (e.g., "AI-generated content may contain errors")
+
+**Rationale**: AI accuracy impacts trust. Privacy violations violate user rights. Ethical AI use builds long-term credibility.
+
+### VI. Performance Standards
+
+**Scalable, Efficient Operations**
+- Build time MUST be < 2 minutes (Docusaurus production build)
+- API response time MUST be < 500ms (95th percentile)
+- Chatbot queries MUST return in < 3 seconds (including RAG retrieval)
+- System MUST support 100+ concurrent users without degradation
+- Database queries MUST be optimized (indexed fields, query optimization)
+- Vector search in Qdrant MUST return top 5 results in < 200ms
+- Frontend bundle size MUST be < 500KB (gzipped)
+- Images MUST be optimized (WebP format, lazy loading)
+
+**Rationale**: Performance impacts user experience and operational costs. Slow systems frustrate users. Scalability ensures reliability under load.
+
+## Development Workflow
+
+**Quality Gates & Review Process**
+
+1. **Content Creation**:
+   - Write specification using `/sp.specify`
+   - Create technical plan using `/sp.plan`
+   - Generate tasks using `/sp.tasks`
+   - Implement using `/sp.implement`
+
+2. **Code Review Requirements**:
+   - All code examples MUST be peer-reviewed
+   - Security review MUST be performed for authentication/authorization code
+   - AI-generated content MUST be human-reviewed for accuracy
+
+3. **Testing Gates**:
+   - Unit tests MUST pass before merge
+   - Integration tests MUST pass before deployment
+   - RAG accuracy MUST be validated with test queries
+
+4. **Deployment Approval**:
+   - Frontend build MUST complete without errors
+   - Backend health checks MUST pass
+   - Database migrations MUST be tested in staging
+
+## Security Requirements
+
+**Authentication & Data Protection**
+
+- User passwords MUST be hashed with bcrypt (min 10 rounds)
+- Session tokens MUST be HTTP-only, Secure, SameSite cookies
+- API endpoints MUST validate authentication before processing
+- User data MUST be encrypted at rest (database encryption)
+- API keys MUST be stored in environment variables (never in code)
+- HTTPS MUST be enforced for all connections
+- Rate limiting MUST be implemented (max 100 requests/minute per user)
+- SQL injection MUST be prevented (parameterized queries)
+- XSS attacks MUST be prevented (input sanitization, CSP headers)
+
+**Rationale**: Security breaches damage user trust and violate privacy. Educational platforms handle sensitive user data (progress, preferences).
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+**Constitution Authority & Amendment Process**
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+This constitution supersedes all other development practices and guidelines. All contributions MUST comply with these principles.
+
+**Amendment Requirements**:
+1. Amendments MUST be documented with rationale
+2. Breaking changes MUST include migration plan
+3. Version MUST be incremented according to semantic versioning:
+   - MAJOR: Backward incompatible principle changes
+   - MINOR: New principles or material expansions
+   - PATCH: Clarifications, wording improvements
+
+**Compliance Verification**:
+- All pull requests MUST be reviewed for constitution compliance
+- Complexity violations MUST be justified with documented rationale
+- Deviations MUST be approved by project maintainers
+
+**Enforcement**:
+- Non-compliant code MUST NOT be merged
+- Security violations MUST be fixed immediately
+- Performance regressions MUST be addressed before deployment
+
+**Version**: 1.0.0 | **Ratified**: 2025-11-29 | **Last Amended**: 2025-11-29
