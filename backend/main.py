@@ -28,18 +28,19 @@ app.add_middleware(
 )
 
 # Import routes
-from api.routes import chat, auth, translate
+from api.routes import chat, auth, translate, personalize
 
 app.include_router(chat.router, prefix="/api/chat", tags=["RAG Chatbot"])
 app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(translate.router, prefix="/api/translate", tags=["Translation"])
+app.include_router(personalize.router, prefix="/api/personalize", tags=["Personalization"])
 
 
 @app.get("/")
 async def root():
     return {
         "message": "Physical AI Textbook API",
-        "features": ["RAG Chatbot (+50 pts)", "Auth (+30 pts)", "Translation (+20 pts)"],
+        "features": ["RAG Chatbot (+50 pts)", "Personalization (+50 pts)", "Auth (+30 pts)", "Translation (+50 pts)"],
         "status": "ready",
         "docs": "/docs"
     }

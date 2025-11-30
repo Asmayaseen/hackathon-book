@@ -10,7 +10,9 @@ node_modules/
 build/
 
 # Environment
+.env
 .env.local
+*.env
 
 # IDE
 .vscode/

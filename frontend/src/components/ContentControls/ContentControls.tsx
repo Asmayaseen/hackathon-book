@@ -17,6 +17,7 @@ export default function ContentControls({ contentId, originalContent }: ContentC
   const [isPersonalized, setIsPersonalized] = useState(false);
   const [isTranslated, setIsTranslated] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [pageContent, setPageContent] = useState('');
 
   useEffect(() => {
     // Get user from localStorage
@@ -24,7 +25,15 @@ export default function ContentControls({ contentId, originalContent }: ContentC
     if (userData) {
       setUser(JSON.parse(userData));
     }
-  }, []);
+
+    // Extract actual page content from the DOM
+    setTimeout(() => {
+      const contentElement = document.querySelector('.markdown');
+      if (contentElement) {
+        setPageContent(contentElement.textContent || originalContent);
+      }
+    }, 500);
+  }, [originalContent]);
 
   const handlePersonalize = async () => {
     if (!user) {
@@ -47,7 +56,7 @@ export default function ContentControls({ contentId, originalContent }: ContentC
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          content: originalContent,
+          content: pageContent || originalContent,
           software_experience: user.software_experience,
           hardware_experience: user.hardware_experience
         })
@@ -82,7 +91,7 @@ export default function ContentControls({ contentId, originalContent }: ContentC
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          content: originalContent,
+          content: pageContent || originalContent,
           preserve_technical_terms: true
         })
       });
