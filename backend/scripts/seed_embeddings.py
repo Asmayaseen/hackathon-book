@@ -259,12 +259,10 @@ def seed_qdrant(chunks: List[Dict]):
 
     collection_name = settings.qdrant_collection_name
 
-    # Recreate collection (delete if exists)
-    try:
-        client.delete_collection(collection_name)
+    # Check if collection exists and delete it if it does
+    if client.collection_exists(collection_name=collection_name):
+        client.delete_collection(collection_name=collection_name)
         logger.info(f"Deleted existing collection: {collection_name}")
-    except Exception:
-        pass  # Collection doesn't exist yet
 
     # Create collection
     client.create_collection(
@@ -279,6 +277,21 @@ def seed_qdrant(chunks: List[Dict]):
         }
     )
     logger.info(f"Created collection: {collection_name}")
+
+    # Create field indexes for efficient filtering
+    client.create_payload_index(
+        collection_name=collection_name,
+        field_name="module",
+        field_schema="keyword"  # For filtering by module
+    )
+    logger.info("Created index for 'module' field")
+
+    client.create_payload_index(
+        collection_name=collection_name,
+        field_name="chapter",
+        field_schema="keyword"  # For filtering by chapter
+    )
+    logger.info("Created index for 'chapter' field")
 
     # Generate embeddings and upload in batches
     batch_size = 100  # Process 100 chunks at a time

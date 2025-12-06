@@ -32,7 +32,7 @@ Learn the fundamental communication layer that powers modern robotics:
 - URDF (Unified Robot Description Format) for humanoids
 - Real-time control and sensor integration
 
-[Start Module 1 →](/module-01-ros2/intro)
+[Start Module 1 →](/docs/module-01-ros2/intro)
 
 ### Module 2: The Digital Twin (Gazebo & Unity)
 **Weeks 6-7** | **Focus:** Physics simulation and environment building
@@ -45,7 +45,7 @@ Master the art of creating realistic virtual environments:
 - Simulating sensors: LiDAR, Depth Cameras, and IMUs
 - Building custom robot worlds
 
-[Start Module 2 →](/module-02-simulation/intro)
+[Start Module 2 →](/docs/module-02-simulation/intro)
 
 ### Module 3: The AI-Robot Brain (NVIDIA Isaac™)
 **Weeks 8-10** | **Focus:** Advanced perception and training
@@ -58,7 +58,7 @@ Harness the power of NVIDIA's robotics platform:
 - Isaac ROS: Hardware-accelerated VSLAM
 - Nav2: Path planning for bipedal movement
 
-[Start Module 3 →](/module-03-isaac/intro)
+[Start Module 3 →](/docs/module-03-isaac/intro)
 
 ### Module 4: Vision-Language-Action (VLA)
 **Weeks 11-13** | **Focus:** The convergence of LLMs and Robotics
@@ -69,7 +69,7 @@ Connect language models to physical actions:
 - Multi-modal interaction: speech, gesture, vision
 - **Capstone Project:** The Autonomous Humanoid
 
-[Start Module 4 →](/module-04-vla/intro)
+[Start Module 4 →](/docs/module-04-vla/intro)
 
 ## 🎓 Learning Outcomes
 

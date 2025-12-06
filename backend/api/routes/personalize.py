@@ -27,15 +27,14 @@ class PersonalizeResponse(BaseModel):
 
 
 @router.post("/", response_model=PersonalizeResponse)
-async def personalize_content(
-    request: PersonalizeRequest,
-    current_user: dict = Depends(get_current_user)
-):
+async def personalize_content(request: PersonalizeRequest):
     """
     Personalize content based on user's experience level
     - Beginner: More explanations, simpler terminology
     - Intermediate: Balanced technical depth
     - Advanced: Concise, assumes prior knowledge
+
+    Note: Authentication removed to allow guest users
     """
 
     try:

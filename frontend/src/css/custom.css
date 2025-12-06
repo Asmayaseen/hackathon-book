@@ -6,6 +6,7 @@
  */
 
 /* Light mode - Cyber Neon colors */
+
 :root {
   --ifm-color-primary: #00D4FF;
   --ifm-color-primary-dark: #00BFEB;
@@ -28,8 +29,14 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 212, 255, 0.1);
 
   /* Neon glow effects */
-  --neon-glow-cyan: 0 0 5px #00D4FF, 0 0 10px #00D4FF, 0 0 20px #00D4FF;
-  --neon-glow-purple: 0 0 5px #8A2BE2, 0 0 10px #8A2BE2, 0 0 20px #8A2BE2;
+  --neon-glow-cyan: 0 0 5px var(--ifm-color-primary), 0 0 10px var(--ifm-color-primary), 0 0 20px var(--ifm-color-primary);
+  --neon-glow-purple: 0 0 5px var(--ifm-color-secondary), 0 0 10px var(--ifm-color-secondary), 0 0 20px var(--ifm-color-secondary);
+
+  /* Text glow variables for hover effects */
+  --text-glow-blur: 4px;
+  --neon-blue: var(--ifm-color-primary);
+  --neon-purple: var(--ifm-color-secondary);
+  --neon-pink: #FF00FF; /* optional accent */
 }
 
 /* Dark mode - Full Cyber Neon experience */
@@ -46,7 +53,6 @@
   --ifm-color-primary-lighter: #2EE1FF;
   --ifm-color-primary-lightest: #5CE8FF;
 
-  /* Accent purple */
   --ifm-color-secondary: #8A2BE2;
   --ifm-color-secondary-dark: #7B26CA;
   --ifm-color-secondary-darker: #7423BE;
@@ -60,21 +66,50 @@
   --ifm-footer-background-color: #0A0A0A;
 }
 
-/* Neon glow on headings */
-h1, h2, h3 {
-  color: #00D4FF;
-  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+/* --- Navbar --- */
+.navbar {
+  background: linear-gradient(90deg, #0A0A0A 0%, #1A1A1A 100%);
+  border-bottom: 2px solid var(--ifm-color-primary);
+  box-shadow: 0 2px 20px rgba(0, 212, 255, 0.3);
 }
 
-/* Neon links */
-a {
-  color: #00D4FF;
+.navbar__title {
+  color: var(--ifm-color-primary) !important;
+  font-weight: bold;
+  text-shadow: var(--neon-glow-cyan);
+}
+
+.navbar__link {
+  color: var(--neon-blue) !important;
+  text-shadow: 0 0 var(--text-glow-blur) var(--neon-blue);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  font-weight: 500;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  color: #fff !important;
+  text-shadow: 0 0 4px var(--neon-purple), 0 0 8px var(--neon-purple);
+}
+
+/* --- Course Page / Cards / Main Content --- */
+.card, .menu, .alert, .theme-doc-markdown a {
   transition: all 0.3s ease;
 }
 
-a:hover {
-  color: #8A2BE2;
-  text-shadow: var(--neon-glow-purple);
+.card:hover, .menu .menu__link:hover {
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 10px rgba(148, 82, 255, 0.5);
+}
+
+.theme-doc-markdown a {
+  color: var(--neon-blue);
+}
+
+.theme-doc-markdown a:hover {
+  color: var(--neon-purple);
+  text-decoration: underline;
+  text-shadow: 0 0 2px var(--neon-purple);
 }
 
 /* Neon buttons */
@@ -90,184 +125,47 @@ a:hover {
   box-shadow: 0 0 20px #00D4FF, 0 0 30px #00D4FF, 0 0 40px #00D4FF;
 }
 
-/* Neon code blocks */
-code {
-  background-color: rgba(0, 212, 255, 0.1);
-  border: 1px solid rgba(0, 212, 255, 0.3);
-  color: #00D4FF;
+/* --- Algolia Searchbox --- */
+.DocSearch-Button {
+  background: transparent !important;
+  border: 1px solid var(--neon-blue) !important;
+  box-shadow: 0 0 3px var(--neon-blue);
 }
 
-[data-theme='dark'] code {
-  background-color: rgba(0, 212, 255, 0.15);
-  border: 1px solid rgba(0, 212, 255, 0.4);
+.DocSearch-Button:hover {
+  box-shadow: 0 0 8px var(--neon-purple);
 }
 
-/* Neon navbar */
-.navbar {
-  background: linear-gradient(90deg, #0A0A0A 0%, #1A1A1A 100%);
-  border-bottom: 2px solid #00D4FF;
-  box-shadow: 0 2px 20px rgba(0, 212, 255, 0.3);
+.navbar__item.navbar__link[aria-label="Search"] {
+  width: 36px;
+  height: 36px;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.navbar__title {
-  color: #00D4FF !important;
-  font-weight: bold;
-  text-shadow: var(--neon-glow-cyan);
+.navbar__item.navbar__link[aria-label="Search"] .DocSearch-Button-Placeholder,
+.navbar__item.navbar__link[aria-label="Search"] .DocSearch-Button-Keys {
+  display: none !important;
 }
 
-/* Neon sidebar */
-.theme-doc-sidebar-container {
-  background-color: #FFFFFF !important;
-  border-right: 1px solid rgba(0, 212, 255, 0.3);
+.DocSearch-Button-Container {
+  width: auto !important;
 }
 
-.menu {
-  padding: 12px;
+.DocSearch-Search-Icon {
+  margin-right: 0 !important;
 }
 
-/* Sidebar links - Always visible with cyan */
-.menu__link {
-  color: #00D4FF !important;
-  transition: all 0.3s ease;
-  font-weight: 500;
+
+.DocSearch-Button-Container {
+  width: auto !important; /* Adjust container */
 }
 
-.menu__link:hover {
-  color: #FFFFFF !important;
-  text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
-  background-color: rgba(0, 212, 255, 0.15) !important;
+.DocSearch-Search-Icon {
+  margin-right: 0 !important; /* Remove margin next to icon */
 }
-
-.menu__link--active {
-  color: #8A2BE2 !important;
-  background: linear-gradient(90deg, rgba(138, 43, 226, 0.2) 0%, rgba(0, 212, 255, 0.1) 100%) !important;
-  border-left: 3px solid #8A2BE2;
-  box-shadow: inset var(--neon-glow-purple);
-  font-weight: 700;
-}
-
-/* Category labels - Bright purple */
-.menu__list-item-collapsible {
-  color: #B865FF !important;
-}
-
-.menu__link--sublist {
-  color: #B865FF !important;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.menu__link--sublist:hover {
-  color: #FFFFFF !important;
-}
-
-/* Category arrow */
-.menu__link--sublist-caret:after {
-  background: var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem;
-  filter: brightness(0) saturate(100%) invert(66%) sepia(85%) saturate(3000%) hue-rotate(250deg) brightness(100%) contrast(101%);
-}
-
-/* Right Sidebar (Table of Contents) - Dark Cyber Theme */
-.theme-doc-toc-desktop {
-  background-color:#FFFFFF !important;
-  border-left: 1px solid rgba(0, 212, 255, 0.3);
-}
-
-.table-of-contents {
-  border-left: 2px solid rgba(0, 212, 255, 0.2);
-  padding-left: 8px;
-}
-
-.table-of-contents__link {
-  color: #00D4FF !important;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-}
-
-.table-of-contents__link:hover {
-  color: #FFFFFF !important;
-  text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
-}
-
-.table-of-contents__link--active {
-  color: #8A2BE2 !important;
-  font-weight: 600;
-  border-left: 2px solid #8A2BE2;
-  padding-left: 8px;
-  margin-left: -10px;
-}
-
-.table-of-contents__link code {
-  background-color: rgba(0, 212, 255, 0.1);
-  color: #00D4FF;
-  font-size: 0.8rem;
-}
-
-/* TOC heading */
-.theme-doc-toc-desktop h3 {
-  color: #B865FF !important;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
-}
-
-/* Neon cards/admonitions */
-.alert {
-  border-left: 4px solid #00D4FF;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(138, 43, 226, 0.05) 100%);
-  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
-}
-
-.alert--info {
-  border-left-color: #00D4FF;
-}
-
-.alert--tip {
-  border-left-color: #8A2BE2;
-}
-
-/* Neon footer */
-.footer {
-  background: linear-gradient(180deg, #0A0A0A 0%, #1A1A1A 100%);
-  border-top: 2px solid #00D4FF;
-  box-shadow: 0 -2px 20px rgba(0, 212, 255, 0.3);
-}
-
-.footer__link-item {
-  color: #00D4FF;
-}
-
-.footer__link-item:hover {
-  color: #8A2BE2;
-  text-shadow: var(--neon-glow-purple);
-}
-
-/* Cyber grid background effect */
-[data-theme='dark'] {
-  background-image:
-    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-/* Neon scroll effects */
-::-webkit-scrollbar {
-  width: 12px;
-  background-color: #0A0A0A;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00D4FF 0%, #8A2BE2 100%);
-  border-radius: 6px;
-  box-shadow: var(--neon-glow-cyan);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #8A2BE2 0%, #00D4FF 100%);
-  box-shadow: var(--neon-glow-purple);
-}
-
 /* Cyber animations */
 @keyframes neon-pulse {
   0%, 100% {
@@ -280,11 +178,12 @@ code {
 
 h1 {
   animation: neon-pulse 3s ease-in-out infinite;
+  color: var(--ifm-color-primary);
 }
 
 /* Responsive cyber elements */
 @media (max-width: 996px) {
   .navbar {
-    border-bottom: 1px solid #00D4FF;
+    border-bottom: 1px solid var(--ifm-color-primary);
   }
 }

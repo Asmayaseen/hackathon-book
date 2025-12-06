@@ -71,6 +71,9 @@ class ChatService {
    */
   async query(request: ChatRequest): Promise<ChatResponse> {
     try {
+      console.log('🤖 Sending query to backend:', this.baseUrl);
+      console.log('📝 Request:', request);
+
       const response = await fetch(`${this.baseUrl}/api/chat/query`, {
         method: 'POST',
         headers: {
@@ -86,10 +89,12 @@ class ChatService {
           detail: 'An error occurred while processing your request.'
         }));
 
+        console.error('❌ Backend error:', errorData);
         throw new Error(errorData.detail || `HTTP ${response.status}: ${response.statusText}`);
       }
 
       const data: ChatResponse = await response.json();
+      console.log('✅ Got response from backend:', data);
       return data;
 
     } catch (error) {
@@ -97,6 +102,7 @@ class ChatService {
 
       // DEMO MODE: If backend unavailable, return demo response
       if (error instanceof TypeError && error.message.includes('fetch')) {
+        console.warn('⚠️ Backend unavailable - Using DEMO MODE');
         return this.getDemoResponse(request);
       }
 

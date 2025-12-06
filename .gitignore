@@ -17,3 +17,12 @@ build/
 # IDE
 .vscode/
 .idea/
+
+# Environment files
+.env
+*.env
+
+# Virtual environment
+venv/
+.venv/
+backend/venv/

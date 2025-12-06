@@ -1,0 +1,228 @@
+.hero {
+  background: var(--ifm-background-color);
+  padding: 100px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .hero {
+  background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+  border-bottom-color: rgba(0, 212, 255, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  background: linear-gradient(135deg, #00D4FF 0%, #8A2BE2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: #B8B8B8;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.labsSection {
+  background: var(--ifm-background-surface-color);
+  padding: 80px 20px;
+}
+
+[data-theme='dark'] .labsSection {
+  background: #0F0F0F;
+}
+
+.labsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.labCard {
+  background: linear-gradient(135deg, #1A1A1A 0%, #0F0F0F 100%);
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.labCard:hover {
+  border-color: #00D4FF;
+  transform: translateY(-8px);
+  box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+}
+
+.labIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.labCard h3 {
+  color: #00D4FF;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.labCard p {
+  color: #B8B8B8;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.labList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.labList li {
+  color: #D0D0D0;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.labButton {
+  background: linear-gradient(135deg, #00D4FF 0%, #00A8CC 100%);
+  color: #0A0A0A;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.labButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+  color: #0A0A0A;
+  text-decoration: none;
+}
+
+.hardwareLabs {
+  background: linear-gradient(180deg, #1A1A1A 0%, #0F0F0F 100%);
+  padding: 80px 20px;
+}
+
+.hardwareLabs h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  color: #00D4FF;
+  margin-bottom: 1rem;
+}
+
+.setupGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.setupCard {
+  background: rgba(138, 43, 226, 0.1);
+  border: 2px solid rgba(138, 43, 226, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.setupCard:hover {
+  border-color: #8A2BE2;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(138, 43, 226, 0.3);
+}
+
+.setupCard h3 {
+  color: #8A2BE2;
+  margin-bottom: 1rem;
+}
+
+.setupCard p {
+  color: #B8B8B8;
+  margin-bottom: 1rem;
+}
+
+.setupCard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.setupCard li {
+  color: #D0D0D0;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.setupCard li:last-child {
+  border-bottom: none;
+}
+
+.cta {
+  background: linear-gradient(135deg, #00D4FF 0%, #8A2BE2 100%);
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 2.5rem;
+  color: #0A0A0A;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+
+.cta p {
+  font-size: 1.2rem;
+  color: #1A1A1A;
+  margin-bottom: 2rem;
+}
+
+.ctaButton {
+  background: #0A0A0A;
+  color: #00D4FF;
+  padding: 16px 40px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background: #1A1A1A;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(10, 10, 10, 0.5);
+  color: #00D4FF;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .labsGrid,
+  .setupGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .hardwareLabs h2,
+  .cta h2 {
+    font-size: 2rem;
+  }
+}

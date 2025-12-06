@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { ChatWidget } from '../components/ChatWidget/ChatWidget';
+import { ChatWidget } from '@site/src/components/ChatWidget/ChatWidget';
 
 // Root wrapper that adds ChatWidget to every page
 export default function Root({ children }: { children: React.ReactNode }) {

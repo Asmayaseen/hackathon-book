@@ -44,52 +44,63 @@ def restore_placeholders(translated_content: str, placeholders: Dict[str, str]) 
     """
     Restores the original code blocks and technical terms back into the translated text.
     """
+    # Handle None or empty translated content
+    if not translated_content:
+        return translated_content or ""
+
     # Important: Iterate through placeholders and replace
     for placeholder, original_text in placeholders.items():
-        translated_content = translated_content.replace(placeholder, original_text)
+        if placeholder in translated_content:
+            translated_content = translated_content.replace(placeholder, original_text)
     return translated_content
 
-# Mock/Simulated OpenAI Call Function
+# OpenAI Translation Function
 async def simulate_openai_translation(text: str, target_lang: str) -> str:
     """
-    Mocks the asynchronous call to the OpenAI API for translation.
-    In production, you would use 'openai.AsyncOpenAI' here.
+    Translates text to target language using OpenAI API.
+    Preserves placeholders wrapped in {{...}}.
     """
-    if OPENAI_API_KEY == "DUMMY_KEY_FOR_SIMULATION":
-        # Simulation: Attempt a simple translation or return a fake response
-        urdu_mapping = {
-            "Robot Operating System 2": "روبوٹ آپریٹنگ سسٹم 2",
-            "This is a test.": "یہ ایک ٹیسٹ ہے۔",
-            "The robot is controlled by the API.": "روبوٹ کو API کے ذریعے کنٹرول کیا جاتا ہے۔"
-        }
-        
-        # Simple lookup for demonstration
-        if text in urdu_mapping:
-            return urdu_mapping[text]
-            
-        # Fallback simulation
-        return f"FAKE_TRANSLATION_TO_URDU: [{text}]" 
-    
-    # --- REAL OPENAI CALL (If API Key is set, this is where actual call goes) ---
-    # Example structure for real call:
-    # from openai import AsyncOpenAI
-    # client = AsyncOpenAI(api_key=OPENAI_API_KEY)
-    #
-    # system_prompt = (
-    #     f"Translate the following content to {target_lang}. Preserve all tokens "
-    #     f"enclosed in {{...}} exactly as they are."
-    # )
-    # try:
-    #     response = await client.chat.completions.create(
-    #         model="gpt-4o", 
-    #         messages=[
-    #             {"role": "system", "content": system_prompt},
-    #             {"role": "user", "content": text}
-    #         ]
-    #     )
-    #     return response.choices[0].message.content
-    # except Exception:
-    #     raise HTTPException(status_code=503, detail="OpenAI service is unavailable.")
+    # Handle None or empty text
+    if not text or text.strip() == "":
+        return ""
+
+    # If API key is not set, return a fallback
+    if OPENAI_API_KEY == "DUMMY_KEY_FOR_SIMULATION" or not OPENAI_API_KEY:
+        return f"[Translation unavailable - API key not configured]"
+
+    try:
+        from openai import OpenAI
+        client = OpenAI(api_key=OPENAI_API_KEY)
+
+        # Create system prompt for translation
+        lang_name = "Urdu" if target_lang == "ur" else "target language"
+        system_prompt = (
+            f"You are a professional translator. Translate the following English text to {lang_name}. "
+            f"IMPORTANT: Preserve all placeholders wrapped in {{{{...}}}} exactly as they are. "
+            f"Do not translate technical terms, code, or anything inside placeholders. "
+            f"Provide only the translation, no explanations."
+        )
+
+        # Call OpenAI API
+        response = client.chat.completions.create(
+            model=os.getenv("OPENAI_MODEL", "gpt-4o"),
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": text}
+            ],
+            temperature=0.3,
+            max_tokens=2000
+        )
+
+        translated = response.choices[0].message.content
+
+        # Return translated text (ensure it's not None)
+        return translated if translated else text
+
+    except Exception as e:
+        print(f"OpenAI translation error: {e}")
+        # Return original text if translation fails
+        return text
 
 # --- API ROUTER AND MODELS ---
 

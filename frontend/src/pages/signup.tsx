@@ -43,7 +43,7 @@ export default function Signup() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          password: formData.password,
+          password: formData.password.substring(0, 72),
           software_experience: formData.softwareExperience,
           hardware_experience: formData.hardwareExperience,
           learning_goal: formData.learningGoal
@@ -60,7 +60,12 @@ export default function Signup() {
         window.location.href = '/hackathon-book/signin';
       }, 2000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Signup failed');
+      console.error('Signup error:', err);
+      if (err instanceof TypeError && err.message.includes('fetch')) {
+        setError('Cannot connect to server. Make sure backend is running on port 8000.');
+      } else {
+        setError(err instanceof Error ? err.message : 'Signup failed');
+      }
     }
   };
 

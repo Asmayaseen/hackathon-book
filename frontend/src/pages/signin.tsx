@@ -29,7 +29,7 @@ export default function Signin() {
       const response = await fetch(`${API_URL}/auth/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ ...formData, password: formData.password.substring(0, 72) })
       });
 
       if (!response.ok) {

@@ -1,0 +1,26 @@
+{
+  "title": {
+    "message": "فزیکل AI اور روبوٹکس"
+  },
+  "logo.alt": {
+    "message": "فزیکل AI لوگو"
+  },
+  "item.label.Course Modules": {
+    "message": "کورس ماڈیولز"
+  },
+  "item.label.Practice Labs": {
+    "message": "پریکٹس لیبز"
+  },
+  "item.label.Personalize": {
+    "message": "ذاتی نوعیت"
+  },
+  "item.label.Sign Up": {
+    "message": "سائن اپ"
+  },
+  "item.label.Sign In": {
+    "message": "سائن ان"
+  },
+  "item.label.GitHub": {
+    "message": "گٹ ہب"
+  }
+}

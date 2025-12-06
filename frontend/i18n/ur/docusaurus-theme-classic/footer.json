@@ -1,0 +1,26 @@
+{
+  "link.title.Learning": {
+    "message": "سیکھنا"
+  },
+  "link.title.Community": {
+    "message": "کمیونٹی"
+  },
+  "link.title.More": {
+    "message": "مزید"
+  },
+  "link.item.label.Get Started": {
+    "message": "شروع کریں"
+  },
+  "link.item.label.GitHub Discussions": {
+    "message": "گٹ ہب ڈسکشنز"
+  },
+  "link.item.label.Issues": {
+    "message": "مسائل"
+  },
+  "link.item.label.GitHub": {
+    "message": "گٹ ہب"
+  },
+  "copyright": {
+    "message": "کاپی رائٹ © 2024 فزیکل AI اور ہیومنائیڈ روبوٹکس۔ Docusaurus کے ساتھ بنایا گیا۔"
+  }
+}

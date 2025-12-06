@@ -20,7 +20,7 @@ router = APIRouter()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # JWT settings
-SECRET_KEY = os.getenv("SECRET_KEY", "default-secret-key-change-in-production")
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
 
@@ -101,11 +101,12 @@ def get_db():
 
 # Helper functions
 def hash_password(password: str) -> str:
-    return pwd_context.hash(password)
+    # Truncate password to 72 bytes to avoid bcrypt error
+    return pwd_context.hash(password.encode('utf-8')[:72])
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
+    return pwd_context.verify(plain_password.encode('utf-8')[:72], hashed_password)
 
 
 def create_access_token(data: dict) -> str:
