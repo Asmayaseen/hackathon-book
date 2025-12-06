@@ -1,5 +1,6 @@
 import os
 import re
+import time
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Dict, Any, Optional
@@ -108,6 +109,13 @@ class TranslateResponse(BaseModel):
     cached: bool = False
 
 
+@router.post("/urdu", response_model=TranslateResponse)
+async def translate_to_urdu(request: TranslateRequest):
+    """Translate content to Urdu - Alias for /api/translate/urdu"""
+    request.target_lang = "ur"
+    return await translate_content(request)
+
+
 @router.post("/", response_model=TranslateResponse)
 async def translate_content(request: TranslateRequest):
     """
@@ -148,7 +156,7 @@ async def translate_content(request: TranslateRequest):
         # 5. Cache result
         MOCK_CACHE[content_hash] = {
             'translated': final_translated_text,
-            'timestamp': os.time() 
+            'timestamp': time.time()
         }
 
         # 6. Return translation

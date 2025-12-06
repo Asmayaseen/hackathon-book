@@ -28,12 +28,22 @@ const config: Config = {
 
   onBrokenLinks: 'warn', // Changed to warn to allow build despite broken links
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  // Internationalization: English and Urdu support
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'ur'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+        direction: 'ltr',
+        htmlLang: 'en-US',
+      },
+      ur: {
+        label: 'اردو',
+        direction: 'rtl',
+        htmlLang: 'ur-PK',
+      },
+    },
   },
 
   presets: [
@@ -58,6 +68,8 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: false,
       respectPrefersColorScheme: true,
     },
     navbar: {
@@ -74,9 +86,18 @@ const config: Config = {
           label: 'Course',
         },
         {
-          to: '/chatbot',
-          label: '🤖 AI Chatbot',
+          to: '/labs',
+          label: 'Labs',
           position: 'left',
+        },
+        {
+          to: '/personalize',
+          label: 'Personalize',
+          position: 'left',
+        },
+        {
+          type: 'localeDropdown',
+          position: 'right',
         },
         {
           to: '/signup',
