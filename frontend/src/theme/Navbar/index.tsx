@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { JSX, useState } from 'react';
 import Navbar from '@theme-original/Navbar';
 import type NavbarType from '@theme/Navbar';
 import type { WrapperProps } from '@docusaurus/types';

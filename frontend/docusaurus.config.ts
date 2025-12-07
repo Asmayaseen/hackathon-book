@@ -96,8 +96,9 @@ const config: Config = {
           position: 'left',
         },
         {
-          type: 'localeDropdown',
-          position: 'right',
+          to: '/chatbot',
+          label: 'AI Tutor',
+          position: 'left',
         },
         {
           to: '/signup',
