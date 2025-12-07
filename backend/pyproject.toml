@@ -1,0 +1,143 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hackathon-book-api"
+version = "1.0.0"
+description = "FastAPI Backend for Physical AI & Humanoid Robotics Interactive Textbook"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Asma Yaseen", email = "asmayaseen@example.com"}
+]
+keywords = ["fastapi", "rag", "chatbot", "ai", "robotics", "education"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Framework :: FastAPI",
+]
+
+dependencies = [
+    "fastapi==0.123.0",
+    "uvicorn[standard]==0.27.0",
+    "python-dotenv==1.0.0",
+    "pydantic==2.6.0",
+    "pydantic-settings==2.1.0",
+    "openai==1.12.0",
+    "qdrant-client==1.9.0",
+    "psycopg2-binary==2.9.9",
+    "sqlalchemy==2.0.25",
+    "python-jose[cryptography]==3.4.0",
+    "passlib[bcrypt]==1.7.4",
+    "bcrypt==3.2.0",
+    "python-multipart==0.0.18",
+    "httpx==0.26.0",
+    "tiktoken==0.5.2",
+    "tqdm==4.66.3",
+    "langchain==0.1.20",
+    "langchain-openai==0.1.7",
+    "langchain-community==0.0.38",
+    "pypdf2==3.0.1",
+    "pdfplumber==0.11.0",
+    "faiss-cpu==1.8.0",
+    "sentence-transformers==2.7.0",
+    "chromadb==0.4.24",
+    "rank-bm25==0.2.2",
+    "transformers==4.40.0",
+    "torch==2.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Asmayaseen/hackathon-book"
+Documentation = "https://hackathon-book-api.onrender.com/docs"
+Repository = "https://github.com/Asmayaseen/hackathon-book"
+Issues = "https://github.com/Asmayaseen/hackathon-book/issues"
+
+[tool.setuptools]
+packages = ["api", "app", "rag", "scripts"]
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+ignore = [
+    "E501",  # line too long (handled by black)
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--tb=short",
+    "--cov=api",
+    "--cov=app",
+    "--cov=rag",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+]
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.coverage.run]
+source = ["api", "app", "rag"]
+omit = [
+    "*/tests/*",
+    "*/venv/*",
+    "*/__pycache__/*",
+]
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
