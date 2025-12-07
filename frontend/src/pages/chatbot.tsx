@@ -123,7 +123,7 @@ export default function Chatbot() {
                   {message.sources.map((source, idx) => (
                     <div key={idx} className={styles.source}>
                       <Link
-                        to={source.url.startsWith('/') ? source.url.substring(1) : source.url}
+                        to={source.url}
                         className={styles.sourceLink}
                       >
                         {source.module} - {source.chapter}

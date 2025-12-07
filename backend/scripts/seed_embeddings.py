@@ -125,8 +125,8 @@ class MarkdownProcessor:
         """
         self.docs_dir = Path(docs_dir)
         self.chunker = MarkdownChunker(
-            max_tokens=settings.chunk_size,
-            overlap_tokens=settings.chunk_overlap
+            max_tokens=1500,  # Larger chunks for better context
+            overlap_tokens=150  # Increased overlap for continuity
         )
 
     def extract_metadata(self, file_path: Path) -> Dict[str, str]:
@@ -155,9 +155,10 @@ class MarkdownProcessor:
         # Parse chapter from filename (e.g., "week-3-nodes-topics.md")
         chapter = file_path.stem.replace("-", " ").title()
 
-        # Generate URL (relative to site root)
+        # Generate URL (relative to Docusaurus docs root)
         url_path = str(rel_path.with_suffix("")).replace("\\", "/")
-        url = f"/{url_path}"
+        # Add /docs/ prefix for Docusaurus routing
+        url = f"/docs/{url_path}"
 
         return {
             "module": module,
@@ -184,13 +185,10 @@ class MarkdownProcessor:
             # Remove frontmatter (YAML between --- delimiters)
             content = re.sub(r'^---\n.*?\n---\n', '', content, flags=re.DOTALL)
 
-            # Remove code blocks (preserve for context but don't over-index)
-            # Keep inline code, remove large code blocks
-            content = re.sub(r'```.*?```', '', content, flags=re.DOTALL)
-
-            # Clean up markdown formatting
-            content = re.sub(r'[#*_`]', '', content)  # Remove markdown symbols
-            content = re.sub(r'\n\s*\n', '\n\n', content)  # Normalize whitespace
+            # MINIMAL CLEANING - Keep almost everything for maximum context
+            # Only remove excessive whitespace
+            content = re.sub(r'\n\s*\n\s*\n+', '\n\n', content)  # Normalize multiple newlines
+            content = content.strip()
 
             # Skip if content too short
             if len(content.strip()) < 100:
@@ -294,7 +292,7 @@ def seed_qdrant(chunks: List[Dict]):
     logger.info("Created index for 'chapter' field")
 
     # Generate embeddings and upload in batches
-    batch_size = 100  # Process 100 chunks at a time
+    batch_size = 20  # Process 20 chunks at a time (smaller to avoid timeout)
     total_batches = (len(chunks) + batch_size - 1) // batch_size
 
     for batch_idx in tqdm(range(0, len(chunks), batch_size), desc="Uploading to Qdrant", total=total_batches):

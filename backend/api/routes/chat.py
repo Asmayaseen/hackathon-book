@@ -96,7 +96,7 @@ async def chat_query(query: ChatQuery):
         for idx, result in enumerate(search_results):
             payload = result.payload
             context_parts.append(
-                f"[Source {idx + 1}] ({payload.get('file', 'unknown')})\n{payload.get('content', '')}\n"
+                f"[Source {idx + 1}] ({payload.get('file', payload.get('module', 'unknown'))})\n{payload.get('text', payload.get('content', ''))}\n"
             )
 
             sources.append(Source(

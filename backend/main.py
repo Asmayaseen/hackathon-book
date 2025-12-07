@@ -29,11 +29,13 @@ app.add_middleware(
 
 # Import routes
 from api.routes import chat, auth, translate, personalize
+# from api.routes import rag  # Disabled: RAG dependencies not installed
 
 app.include_router(chat.router, prefix="/api/chat", tags=["RAG Chatbot"])
 app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(translate.router, prefix="/api/translate", tags=["Translation"])
 app.include_router(personalize.router, prefix="/api/personalize", tags=["Personalization"])
+# app.include_router(rag.router, prefix="/api", tags=["RAG System"])  # Disabled
 
 
 @app.get("/")

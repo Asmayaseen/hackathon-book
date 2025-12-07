@@ -1,0 +1,22 @@
+2025-12-07 11:18:17,522 - __main__ - INFO - ============================================================
+2025-12-07 11:18:17,522 - __main__ - INFO - Starting embeddings seeding process
+2025-12-07 11:18:17,522 - __main__ - INFO - ============================================================
+2025-12-07 11:18:17,523 - __main__ - INFO - Processing docs from: /mnt/d/hackathon-robotic/hackathon-book/frontend/docs
+2025-12-07 11:18:24,673 - __main__ - INFO - Found 28 markdown files
+Processing markdown files:   0%|          | 0/28 [00:00<?, ?it/s]Processing markdown files:  11%|█         | 3/28 [00:00<00:01, 24.91it/s]Processing markdown files:  21%|██▏       | 6/28 [00:00<00:00, 27.39it/s]Processing markdown files:  36%|███▌      | 10/28 [00:00<00:00, 32.02it/s]Processing markdown files:  50%|█████     | 14/28 [00:00<00:00, 32.10it/s]Processing markdown files:  64%|██████▍   | 18/28 [00:00<00:00, 29.93it/s]Processing markdown files:  79%|███████▊  | 22/28 [00:00<00:00, 29.93it/s]Processing markdown files:  93%|█████████▎| 26/28 [00:00<00:00, 30.57it/s]Processing markdown files: 100%|██████████| 28/28 [00:00<00:00, 30.25it/s]
+2025-12-07 11:18:25,607 - __main__ - INFO - Generated 57 total chunks
+2025-12-07 11:18:25,608 - __main__ - INFO - Connecting to Qdrant...
+2025-12-07 11:18:26,307 - httpx - INFO - HTTP Request: GET https://62b19621-b26c-4520-9bfc-534b3b53dbc9.eu-central-1-0.aws.cloud.qdrant.io:6333/collections/hackathon_book/exists "HTTP/1.1 200 OK"
+2025-12-07 11:18:26,631 - httpx - INFO - HTTP Request: PUT https://62b19621-b26c-4520-9bfc-534b3b53dbc9.eu-central-1-0.aws.cloud.qdrant.io:6333/collections/hackathon_book "HTTP/1.1 200 OK"
+2025-12-07 11:18:26,634 - __main__ - INFO - Created collection: hackathon_book
+2025-12-07 11:18:26,869 - httpx - INFO - HTTP Request: PUT https://62b19621-b26c-4520-9bfc-534b3b53dbc9.eu-central-1-0.aws.cloud.qdrant.io:6333/collections/hackathon_book/index?wait=true "HTTP/1.1 200 OK"
+2025-12-07 11:18:26,875 - __main__ - INFO - Created index for 'module' field
+2025-12-07 11:18:27,118 - httpx - INFO - HTTP Request: PUT https://62b19621-b26c-4520-9bfc-534b3b53dbc9.eu-central-1-0.aws.cloud.qdrant.io:6333/collections/hackathon_book/index?wait=true "HTTP/1.1 200 OK"
+2025-12-07 11:18:27,120 - __main__ - INFO - Created index for 'chapter' field
+Uploading to Qdrant:   0%|          | 0/1 [00:00<?, ?it/s]2025-12-07 11:18:28,897 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-07 11:18:32,994 - httpx - INFO - HTTP Request: PUT https://62b19621-b26c-4520-9bfc-534b3b53dbc9.eu-central-1-0.aws.cloud.qdrant.io:6333/collections/hackathon_book/points?wait=true "HTTP/1.1 200 OK"
+Uploading to Qdrant: 100%|██████████| 1/1 [00:05<00:00,  5.87s/it]Uploading to Qdrant: 100%|██████████| 1/1 [00:05<00:00,  5.87s/it]
+2025-12-07 11:18:32,995 - __main__ - INFO - Successfully uploaded 57 chunks to Qdrant
+2025-12-07 11:18:32,997 - __main__ - INFO - ============================================================
+2025-12-07 11:18:32,998 - __main__ - INFO - Seeding complete!
+2025-12-07 11:18:32,998 - __main__ - INFO - ============================================================
