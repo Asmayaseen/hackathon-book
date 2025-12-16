@@ -8,7 +8,7 @@
 // API configuration
 const API_BASE_URL = process.env.NODE_ENV === 'development'
   ? 'http://172.24.5.28:8000'
-  : 'https://your-backend-url.com'; // Replace with your production backend URL
+  : 'https://hackathon-book-api.onrender.com'; // Production backend URL
 
 /**
  * Source citation from chatbot response
