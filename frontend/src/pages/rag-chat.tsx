@@ -25,7 +25,7 @@ export default function RAGChat(): React.ReactElement {
 
   const API_BASE = process.env.NODE_ENV === 'production'
     ? 'https://your-backend-url.com/api'
-    : 'http://localhost:8000/api';
+    : 'http://172.24.5.28:8000/api';
 
   // Fetch RAG system status on mount
   useEffect(() => {

@@ -35,7 +35,7 @@ export default function Signup() {
     try {
       const API_URL = process.env.NODE_ENV === 'production'
         ? 'https://hackathon-book-api.onrender.com/api'
-        : 'http://localhost:8000/api';
+        : 'http://172.24.5.28:8000/api';
 
       const response = await fetch(`${API_URL}/auth/signup`, {
         method: 'POST',
@@ -57,7 +57,7 @@ export default function Signup() {
 
       setSuccess(true);
       setTimeout(() => {
-        window.location.href = '/hackathon-book/signin';
+        window.location.href = '/signin';
       }, 2000);
     } catch (err) {
       console.error('Signup error:', err);

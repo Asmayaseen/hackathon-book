@@ -24,7 +24,7 @@ export default function Signin() {
     try {
       const API_URL = process.env.NODE_ENV === 'production'
         ? 'https://hackathon-book-api.onrender.com/api'
-        : 'http://localhost:8000/api';
+        : 'http://172.24.5.28:8000/api';
 
       const response = await fetch(`${API_URL}/auth/signin`, {
         method: 'POST',
@@ -44,7 +44,7 @@ export default function Signin() {
       localStorage.setItem('user', JSON.stringify(data.user));
 
       // Redirect to homepage
-      window.location.href = '/hackathon-book/';
+      window.location.href = '/';
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     }

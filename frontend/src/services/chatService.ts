@@ -7,7 +7,7 @@
 
 // API configuration
 const API_BASE_URL = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:8000'
+  ? 'http://172.24.5.28:8000'
   : 'https://your-backend-url.com'; // Replace with your production backend URL
 
 /**

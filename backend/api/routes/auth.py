@@ -7,7 +7,7 @@ from fastapi import APIRouter, HTTPException, Depends, Header
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import datetime, timedelta
-from passlib.context import CryptContext
+import bcrypt
 from jose import JWTError, jwt
 import os
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, Text
@@ -17,7 +17,6 @@ from sqlalchemy.orm import sessionmaker, Session
 router = APIRouter()
 
 # Password hashing
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # JWT settings
 SECRET_KEY = os.getenv("SECRET_KEY")
@@ -101,12 +100,15 @@ def get_db():
 
 # Helper functions
 def hash_password(password: str) -> str:
-    # Truncate password to 72 bytes to avoid bcrypt error
-    return pwd_context.hash(password.encode('utf-8')[:72])
+    password = password[:72]
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
+    return hashed.decode('utf-8')
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password.encode('utf-8')[:72], hashed_password)
+    plain_password = plain_password[:72]
+    return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
 
 
 def create_access_token(data: dict) -> str:
