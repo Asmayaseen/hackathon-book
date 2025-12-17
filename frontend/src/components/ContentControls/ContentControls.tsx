@@ -29,17 +29,19 @@ export default function ContentControls({ contentId, originalContent }: ContentC
 
     // Extract actual page content from the DOM
     setTimeout(() => {
-      const contentElement = document.querySelector('.markdown');
+      const contentElement = document.querySelector('.markdown') ||
+                            document.querySelector('article') ||
+                            document.querySelector('.theme-doc-markdown');
       if (contentElement) {
-        setPageContent(contentElement.textContent || originalContent);
+        setPageContent(contentElement.innerHTML || contentElement.textContent || originalContent);
       }
-    }, 500);
+    }, 1000);
   }, [originalContent]);
 
   const handlePersonalize = async () => {
     if (!user) {
       alert('Please sign in to personalize content');
-      window.location.href = '/hackathon-book/signin';
+      window.location.href = '/signin';
       return;
     }
 
@@ -93,7 +95,7 @@ export default function ContentControls({ contentId, originalContent }: ContentC
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           content: pageContent || originalContent,
-          preserve_technical_terms: true
+          preserve_code: true
         })
       });
 
@@ -104,7 +106,7 @@ export default function ContentControls({ contentId, originalContent }: ContentC
       // Replace content on page
       const contentElement = document.querySelector('.markdown');
       if (contentElement) {
-        contentElement.innerHTML = data.urdu_content;
+        contentElement.innerHTML = data.translated;
         contentElement.style.direction = 'rtl';
         contentElement.style.textAlign = 'right';
         setIsTranslated(true);

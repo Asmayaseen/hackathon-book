@@ -1,83 +1,49 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import styles from './chatbot.module.css';
+import { chatService, ChatMessage } from '../services/chatService';
 
 interface Message {
   role: 'user' | 'assistant';
   content: string;
-  sources?: Source[];
-}
-
-interface Source {
-  content: string;
-  source: string;
-  metadata: any;
+  sources?: any[];
 }
 
 export default function RAGChat(): React.ReactElement {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [ragStatus, setRagStatus] = useState<any>(null);
-  const [uploadingFile, setUploadingFile] = useState(false);
+  const [conversationId, setConversationId] = useState<string | null>(null);
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const API_BASE = process.env.NODE_ENV === 'production'
-    ? 'https://your-backend-url.com/api'
-    : 'http://172.24.5.28:8000/api';
-
-  // Fetch RAG system status on mount
-  useEffect(() => {
-    fetchRagStatus();
-  }, []);
 
   // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const fetchRagStatus = async () => {
-    try {
-      const response = await fetch(`${API_BASE}/rag/status`);
-      const data = await response.json();
-      setRagStatus(data);
-    } catch (error) {
-      console.error('Error fetching RAG status:', error);
-    }
-  };
-
   const handleSendMessage = async () => {
     if (!input.trim() || loading) return;
 
     const userMessage: Message = { role: 'user', content: input };
     setMessages((prev) => [...prev, userMessage]);
+    const query = input;
     setInput('');
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE}/rag/chat/query`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          question: input,
-          k: 4,
-          model: 'gpt-3.5-turbo',
-        }),
+      // Use the working chatService (same as navbar ChatWidget)
+      const response = await chatService.query({
+        query: query,
+        conversation_id: conversationId || undefined,
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to get response');
-      }
-
-      const data = await response.json();
+      // Update conversation ID
+      setConversationId(response.conversation_id);
 
       const assistantMessage: Message = {
         role: 'assistant',
-        content: data.answer,
-        sources: data.sources,
+        content: response.answer,
+        sources: response.sources,
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
@@ -100,51 +66,6 @@ export default function RAGChat(): React.ReactElement {
     }
   };
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Validate file type
-    const allowedTypes = ['.pdf', '.txt', '.md'];
-    const fileExt = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
-
-    if (!allowedTypes.includes(fileExt)) {
-      alert(`Unsupported file type. Allowed: ${allowedTypes.join(', ')}`);
-      return;
-    }
-
-    setUploadingFile(true);
-
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-
-      const response = await fetch(`${API_BASE}/rag/ingest/upload`, {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to upload file');
-      }
-
-      const data = await response.json();
-      alert(`File uploaded successfully!\nDocuments: ${data.documents_loaded}\nChunks: ${data.chunks_created}`);
-
-      // Refresh status
-      await fetchRagStatus();
-
-    } catch (error) {
-      console.error('Upload error:', error);
-      alert('Failed to upload file. Please try again.');
-    } finally {
-      setUploadingFile(false);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
-    }
-  };
-
   return (
     <Layout
       title="RAG Chat"
@@ -152,44 +73,15 @@ export default function RAGChat(): React.ReactElement {
     >
       <div className={styles.chatContainer}>
         <div className={styles.chatHeader}>
-          <h1>📚 RAG Document Chat</h1>
-          {ragStatus && (
-            <div className={styles.statusBadge}>
-              <span className={ragStatus.is_initialized ? styles.statusGreen : styles.statusRed}>
-                {ragStatus.is_initialized ? '● Ready' : '● Not Initialized'}
-              </span>
-              {ragStatus.vectorstore_stats?.total_vectors > 0 && (
-                <span className={styles.statusInfo}>
-                  {ragStatus.vectorstore_stats.total_vectors} chunks indexed
-                </span>
-              )}
-            </div>
-          )}
-        </div>
-
-        <div className={styles.uploadSection}>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".pdf,.txt,.md"
-            onChange={handleFileUpload}
-            style={{ display: 'none' }}
-          />
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            className={styles.uploadButton}
-            disabled={uploadingFile}
-          >
-            {uploadingFile ? '⏳ Uploading...' : '📄 Upload Document'}
-          </button>
-          <small>Supported: PDF, TXT, MD</small>
+          <h1>📚 AI Tutor - RAG Chat</h1>
+          <p className={styles.subtitle}>Ask questions about Physical AI & Humanoid Robotics</p>
         </div>
 
         <div className={styles.messagesContainer}>
           {messages.length === 0 ? (
             <div className={styles.emptyState}>
-              <h2>👋 Welcome to RAG Chat!</h2>
-              <p>Upload documents and ask questions about them.</p>
+              <h2>👋 Welcome to AI Tutor!</h2>
+              <p>Ask me anything about ROS 2, Gazebo, NVIDIA Isaac, or VLA!</p>
               <div className={styles.suggestions}>
                 <h3>Try asking:</h3>
                 <button onClick={() => setInput('What is ROS 2?')} className={styles.suggestionButton}>
@@ -215,8 +107,8 @@ export default function RAGChat(): React.ReactElement {
                     <div className={styles.sourcesList}>
                       {msg.sources.map((source, sidx) => (
                         <div key={sidx} className={styles.source}>
-                          <strong>Source {sidx + 1}:</strong> {source.source}
-                          <p>{source.content.substring(0, 200)}...</p>
+                          <strong>Source {sidx + 1}:</strong> {source.module} - {source.chapter}
+                          <a href={source.url} target="_blank" rel="noopener noreferrer">View Source</a>
                         </div>
                       ))}
                     </div>
@@ -240,14 +132,14 @@ export default function RAGChat(): React.ReactElement {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Ask a question about your documents..."
+            placeholder="Ask a question about Physical AI & Robotics..."
             className={styles.input}
             rows={3}
-            disabled={loading || !ragStatus?.is_initialized}
+            disabled={loading}
           />
           <button
             onClick={handleSendMessage}
-            disabled={loading || !input.trim() || !ragStatus?.is_initialized}
+            disabled={loading || !input.trim()}
             className={styles.sendButton}
           >
             {loading ? '⏳' : '🚀'} Send

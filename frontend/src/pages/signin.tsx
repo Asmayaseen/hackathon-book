@@ -91,7 +91,7 @@ export default function Signin() {
             </button>
 
             <p className={styles.switchLink}>
-              Don't have an account? <a href="/hackathon-book/signup">Create Account</a>
+              Don't have an account? <a href="/signup">Create Account</a>
             </p>
           </form>
         </div>
