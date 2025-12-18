@@ -1,0 +1,14 @@
+# Nixpacks configuration for Railway deployment
+# This file tells Nixpacks to build the backend directory
+
+[phases.setup]
+nixPkgs = ["python310", "pip"]
+
+[phases.install]
+cmds = [
+  "cd backend",
+  "pip install -r requirements-render.txt"
+]
+
+[start]
+cmd = "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
