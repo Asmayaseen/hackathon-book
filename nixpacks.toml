@@ -1,9 +1,12 @@
 # Nixpacks configuration for Railway deployment
 # This file tells Nixpacks to build the backend directory
 
+[phases.setup]
+nixPkgs = ["python3"]
+
 [phases.install]
 cmds = [
-   "cd backend && python -m pip install -r requirements-render.txt"
+   "cd backend && python3 -m pip install -r requirements-render.txt"
 ]
 
 [start]
