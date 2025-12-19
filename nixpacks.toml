@@ -2,11 +2,11 @@
 # This file tells Nixpacks to build the backend directory
 
 [phases.setup]
-nixPkgs = ["python3"]
+aptPkgs = ["python3", "python3-pip"]
 
 [phases.install]
 cmds = [
-   "cd backend && python3 -m pip install -r requirements-render.txt"
+   "cd backend && pip3 install -r requirements-render.txt"
 ]
 
 [start]
