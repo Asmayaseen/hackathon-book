@@ -1,15 +1,16 @@
 # Nixpacks configuration for Railway deployment
-# This file tells Nixpacks to build the backend directory
 
 [phases.setup]
 aptPkgs = ["python3", "python3-pip"]
 
 [phases.install]
 cmds = [
-   "cd backend && PIP_BREAK_SYSTEM_PACKAGES=1 pip3 install -r requirements-render.txt"
+  "cd backend && PIP_BREAK_SYSTEM_PACKAGES=1 pip3 install -r requirements-render.txt"
 ]
 
+# 👇 BUILD PHASE KO COMPLETELY DISABLE KAR DIYA
 [phases.build]
+cmds = ["echo 'skip build phase'"]
 
 [start]
 cmd = "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
