@@ -3,7 +3,7 @@
 
 [phases.install]
 cmds = [
-   "cd backend && pip install -r requirements-render.txt"
+   "cd backend && python -m pip install -r requirements-render.txt"
 ]
 
 [start]
