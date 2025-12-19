@@ -6,8 +6,7 @@ nixPkgs = ["python310"]
 
 [phases.install]
 cmds = [
-  "cd backend",
-  "pip install -r requirements-render.txt"
+   "cd backend && pip install -r requirements-render.txt"
 ]
 
 [start]
