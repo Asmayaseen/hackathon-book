@@ -34,8 +34,8 @@ export default function Signup() {
 
     try {
       const API_URL = process.env.NODE_ENV === 'production'
-        ? 'https://hackathon-book-api.onrender.com/api'
-        : 'http://172.24.5.28:8000/api';
+        ? 'https://asma-yaseen-hackathon-book-api.hf.space/api'
+        : 'http://localhost:8000/api';
 
       const response = await fetch(`${API_URL}/auth/signup`, {
         method: 'POST',
