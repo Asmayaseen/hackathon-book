@@ -9,5 +9,8 @@ cmds = [
    "cd backend && pip3 install --break-system-packages -r requirements-render.txt"
 ]
 
+[phases.build]
+cmds = ["echo 'Dependencies already installed'"]
+
 [start]
 cmd = "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
