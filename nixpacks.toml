@@ -2,7 +2,7 @@
 # This file tells Nixpacks to build the backend directory
 
 [phases.setup]
-nixPkgs = ["python310", "pip"]
+nixPkgs = ["python310"]
 
 [phases.install]
 cmds = [
