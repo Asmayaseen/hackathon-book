@@ -23,7 +23,7 @@ python-multipart==0.0.18
 
 # HTTP & utilities
 httpx==0.26.0
-tiktoken==0.5.2
+tiktoken==0.7.0
 
 # Lightweight RAG dependencies
 langchain==0.1.20
