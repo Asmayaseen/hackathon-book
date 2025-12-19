@@ -1,30 +1,38 @@
-# FastAPI Backend for Physical AI Textbook
+# Lightweight FastAPI Backend for Render deployment
+# Excludes heavy ML dependencies (torch, transformers, sentence-transformers)
+
+# Core FastAPI
 fastapi==0.123.0
 uvicorn[standard]==0.27.0
 python-dotenv==1.0.0
 pydantic==2.6.0
 pydantic-settings==2.1.0
-openai==1.12.0
+
+# API integrations
+openai==1.24.0
 qdrant-client==1.9.0
+
+# Database
 psycopg2-binary==2.9.9
 sqlalchemy==2.0.25
+
+# Authentication
 python-jose[cryptography]==3.4.0
-passlib[bcrypt]==1.7.4
 bcrypt==3.2.0
 python-multipart==0.0.18
-httpx==0.26.0
-tiktoken==0.5.2
-tqdm==4.66.3
 
-# RAG System Dependencies
+# HTTP & utilities
+httpx==0.26.0
+tiktoken==0.7.0
+
+# Lightweight RAG dependencies
 langchain==0.1.20
 langchain-openai==0.1.7
 langchain-community==0.0.38
-pypdf2==3.0.1
-pdfplumber==0.11.0
-faiss-cpu==1.8.0
-sentence-transformers==2.7.0
-chromadb==0.4.24
-rank-bm25==0.2.2
-transformers==4.40.0
-torch==2.3.0
+
+# Skip these heavy packages for Render:
+# torch==2.3.0 (2GB+)
+# transformers==4.40.0 (requires torch)
+# sentence-transformers==2.7.0 (requires torch)
+# faiss-cpu==1.8.0 (heavy, use Qdrant instead)
+# chromadb==0.4.24 (heavy, use Qdrant instead)

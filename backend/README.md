@@ -1,3 +1,13 @@
+---
+title: Hackathon Book API
+emoji: 📚
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+app_port: 8000
+---
+
 # Backend API
 
 FastAPI backend with RAG chatbot, auth, and translation.
