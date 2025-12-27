@@ -6,10 +6,13 @@
  */
 
 import React, { useState, useRef, useEffect } from 'react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { chatService, ChatMessage, ChatRequest } from '../../services/chatService';
 import styles from './ChatWidget.module.css';
 
 export const ChatWidget: React.FC = () => {
+  const { siteConfig } = useDocusaurusContext();
+  const baseUrl = siteConfig.baseUrl;
   // State management
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -175,13 +178,20 @@ export const ChatWidget: React.FC = () => {
                     <div className={styles.sources}>
                       <strong>Sources:</strong>
                       <ul>
-                        {msg.sources.map((source, idx) => (
-                          <li key={idx}>
-                            <a href={source.url} target="_blank" rel="noopener noreferrer">
-                              {source.module} - {source.chapter}
-                            </a>
-                          </li>
-                        ))}
+                        {msg.sources.map((source, idx) => {
+                          // Construct URL with baseUrl
+                          const cleanUrl = source.url.startsWith('/') ? source.url.substring(1) : source.url;
+                          const origin = typeof window !== 'undefined' ? window.location.origin : '';
+                          const fullUrl = `${origin}${baseUrl}${cleanUrl}`;
+
+                          return (
+                            <li key={idx}>
+                              <a href={fullUrl} target="_blank" rel="noopener noreferrer">
+                                {source.module} - {source.chapter}
+                              </a>
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   )}
