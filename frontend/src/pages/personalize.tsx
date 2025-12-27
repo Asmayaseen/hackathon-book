@@ -34,7 +34,7 @@ export default function Personalize() {
                   <li>✓ Simplified explanations</li>
                   <li>✓ Guided projects</li>
                 </ul>
-                <Link to={`${process.env.NODE_ENV === 'production' ? '/hackathon-book' : ''}/signup?profile=undergraduate`} className={styles.selectButton}>
+                <Link to="/signup?profile=undergraduate" className={styles.selectButton}>
                   Choose This Path
                 </Link>
               </div>
@@ -49,7 +49,7 @@ export default function Personalize() {
                   <li>✓ Optimization techniques</li>
                   <li>✓ Academic rigor</li>
                 </ul>
-                <Link to={`${process.env.NODE_ENV === 'production' ? '/hackathon-book' : ''}/signup?profile=graduate`} className={styles.selectButton}>
+                <Link to="/signup?profile=graduate" className={styles.selectButton}>
                   Choose This Path
                 </Link>
               </div>
@@ -64,7 +64,7 @@ export default function Personalize() {
                   <li>✓ Scalability patterns</li>
                   <li>✓ Deployment strategies</li>
                 </ul>
-                <Link to={`${process.env.NODE_ENV === 'production' ? '/hackathon-book' : ''}/signup?profile=professional`} className={styles.selectButton}>
+                <Link to="/signup?profile=professional" className={styles.selectButton}>
                   Choose This Path
                 </Link>
               </div>
@@ -78,10 +78,10 @@ export default function Personalize() {
             <h2>Start Your Personalized Journey</h2>
             <p>Create an account to unlock personalized learning and AI assistance</p>
             <div className={styles.ctaButtons}>
-              <Link to={`${process.env.NODE_ENV === 'production' ? '/hackathon-book' : ''}/signup`} className={styles.ctaPrimary}>
+              <Link to="/signup" className={styles.ctaPrimary}>
                 Sign Up Now
               </Link>
-              <Link to={`${process.env.NODE_ENV === 'production' ? '/hackathon-book' : ''}/docs/intro`} className={styles.ctaSecondary}>
+              <Link to="/docs/intro" className={styles.ctaSecondary}>
                 Browse Content First
               </Link>
             </div>
