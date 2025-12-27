@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './chatbot.module.css';
 
 interface Message {
@@ -17,6 +17,9 @@ interface Message {
 }
 
 export default function Chatbot() {
+  const { siteConfig } = useDocusaurusContext();
+  const baseUrl = siteConfig.baseUrl;
+
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
@@ -123,12 +126,12 @@ export default function Chatbot() {
                   <div className={styles.sourcesHeader}>📚 Sources:</div>
                   {message.sources.map((source, idx) => (
                     <div key={idx} className={styles.source}>
-                      <Link
-                        to={useBaseUrl(source.url)}
+                      <a
+                        href={`${baseUrl}${source.url.startsWith('/') ? source.url.substring(1) : source.url}`}
                         className={styles.sourceLink}
                       >
                         {source.module} - {source.chapter}
-                      </Link>
+                      </a>
                       <span className={styles.relevance}>
                         {Math.round(source.relevance_score * 100)}% relevant
                       </span>
