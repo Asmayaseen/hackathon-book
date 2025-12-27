@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './chatbot.module.css';
 
 interface Message {
@@ -123,7 +124,7 @@ export default function Chatbot() {
                   {message.sources.map((source, idx) => (
                     <div key={idx} className={styles.source}>
                       <Link
-                        to={source.url}
+                        to={useBaseUrl(source.url)}
                         className={styles.sourceLink}
                       >
                         {source.module} - {source.chapter}
