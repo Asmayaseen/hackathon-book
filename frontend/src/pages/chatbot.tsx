@@ -18,7 +18,9 @@ interface Message {
 
 export default function Chatbot() {
   const { siteConfig } = useDocusaurusContext();
-  const baseUrl = siteConfig.baseUrl;
+  // Runtime detection: check if we're on GitHub Pages
+  const isGitHubPages = typeof window !== 'undefined' && window.location.hostname.includes('github.io');
+  const baseUrl = isGitHubPages ? '/hackathon-book/' : siteConfig.baseUrl;
 
   const [messages, setMessages] = useState<Message[]>([
     {
