@@ -48,8 +48,8 @@ export default function ContentControls({ contentId, originalContent }: ContentC
     setLoading(true);
     try {
       const API_URL = process.env.NODE_ENV === 'production'
-        ? 'https://asma-yaseen-hackathon-book-api.hf.space/api'
-        : 'http://localhost:8000/api';
+        ? 'https://hackathon-book-api.onrender.com/api'
+        : 'http://172.24.5.28:8000/api';
 
       const token = localStorage.getItem('token');
       const response = await fetch(`${API_URL}/personalize`, {
@@ -87,8 +87,8 @@ export default function ContentControls({ contentId, originalContent }: ContentC
     setLoading(true);
     try {
       const API_URL = process.env.NODE_ENV === 'production'
-        ? 'https://asma-yaseen-hackathon-book-api.hf.space/api'
-        : 'http://localhost:8000/api';
+        ? 'https://hackathon-book-api.onrender.com/api'
+        : 'http://172.24.5.28:8000/api';
 
       const response = await fetch(`${API_URL}/translate/urdu`, {
         method: 'POST',
