@@ -8,7 +8,7 @@
 // API configuration
 const API_BASE_URL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:8000'
-  : 'https://hackathon-book-api.onrender.com'; // Production backend URL
+  : 'https://asma-yaseen-hackathon-book-api.hf.space'; // Production backend URL (Hugging Face Space)
 
 /**
  * Source citation from chatbot response

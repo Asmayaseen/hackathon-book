@@ -42,7 +42,7 @@ export default function PersonalizeContent() {
 
     try {
       const API_URL = process.env.NODE_ENV === 'production'
-        ? 'https://hackathon-book-api.onrender.com/api'
+        ? 'https://asma-yaseen-hackathon-book-api.hf.space/api'
         : 'http://localhost:8000/api';
 
       // Use user profile if available, otherwise use defaults
