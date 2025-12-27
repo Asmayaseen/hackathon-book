@@ -130,12 +130,12 @@ export default function Chatbot() {
                     const fullPath = `${baseUrl}${cleanUrl}`;
                     return (
                       <div key={idx} className={styles.source}>
-                        <Link
-                          to={fullPath}
+                        <a
+                          href={fullPath}
                           className={styles.sourceLink}
                         >
                           {source.module} - {source.chapter}
-                        </Link>
+                        </a>
                         <span className={styles.relevance}>
                           {Math.round(source.relevance_score * 100)}% relevant
                         </span>
