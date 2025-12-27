@@ -124,19 +124,23 @@ export default function Chatbot() {
               {message.sources && message.sources.length > 0 && (
                 <div className={styles.sources}>
                   <div className={styles.sourcesHeader}>📚 Sources:</div>
-                  {message.sources.map((source, idx) => (
-                    <div key={idx} className={styles.source}>
-                      <a
-                        href={`${baseUrl}${source.url.startsWith('/') ? source.url.substring(1) : source.url}`}
-                        className={styles.sourceLink}
-                      >
-                        {source.module} - {source.chapter}
-                      </a>
-                      <span className={styles.relevance}>
-                        {Math.round(source.relevance_score * 100)}% relevant
-                      </span>
-                    </div>
-                  ))}
+                  {message.sources.map((source, idx) => {
+                    // Remove leading slash so Link component can properly add baseUrl
+                    const cleanUrl = source.url.startsWith('/') ? source.url.substring(1) : source.url;
+                    return (
+                      <div key={idx} className={styles.source}>
+                        <Link
+                          to={cleanUrl}
+                          className={styles.sourceLink}
+                        >
+                          {source.module} - {source.chapter}
+                        </Link>
+                        <span className={styles.relevance}>
+                          {Math.round(source.relevance_score * 100)}% relevant
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>
