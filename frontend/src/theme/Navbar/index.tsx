@@ -2,11 +2,15 @@ import React, { JSX, useState } from 'react';
 import Navbar from '@theme-original/Navbar';
 import type NavbarType from '@theme/Navbar';
 import type { WrapperProps } from '@docusaurus/types';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './styles.module.css';
 
 type Props = WrapperProps<typeof NavbarType>;
 
 export default function NavbarWrapper(props: Props): JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
+  const baseUrl = siteConfig.baseUrl;
+
   const [user, setUser] = useState<any>(() => {
     if (typeof window !== 'undefined') {
       const userData = localStorage.getItem('user');
@@ -20,7 +24,7 @@ export default function NavbarWrapper(props: Props): JSX.Element {
   const handlePersonalize = async () => {
     if (!user) {
       alert('Please sign in to personalize content');
-      window.location.href = '/hackathon-book/signin';
+      window.location.href = `${baseUrl}signin`;
       return;
     }
 

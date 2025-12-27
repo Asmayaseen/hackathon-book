@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Layout from '@theme/Layout';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './auth.module.css';
 
 export default function Signup() {
+  const { siteConfig } = useDocusaurusContext();
+  const baseUrl = siteConfig.baseUrl;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -57,7 +60,7 @@ export default function Signup() {
 
       setSuccess(true);
       setTimeout(() => {
-        window.location.href = '/signin';
+        window.location.href = `${baseUrl}signin`;
       }, 2000);
     } catch (err) {
       console.error('Signup error:', err);

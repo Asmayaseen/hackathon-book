@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Layout from '@theme/Layout';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './auth.module.css';
 
 export default function Signin() {
+  const { siteConfig } = useDocusaurusContext();
+  const baseUrl = siteConfig.baseUrl;
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -44,7 +47,7 @@ export default function Signin() {
       localStorage.setItem('user', JSON.stringify(data.user));
 
       // Redirect to homepage
-      window.location.href = '/';
+      window.location.href = baseUrl;
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     }

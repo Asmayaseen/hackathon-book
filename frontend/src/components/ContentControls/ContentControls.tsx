@@ -6,6 +6,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './ContentControls.module.css';
 
 interface ContentControlsProps {
@@ -14,6 +15,8 @@ interface ContentControlsProps {
 }
 
 export default function ContentControls({ contentId, originalContent }: ContentControlsProps) {
+  const { siteConfig } = useDocusaurusContext();
+  const baseUrl = siteConfig.baseUrl;
   const [user, setUser] = useState<any>(null);
   const [isPersonalized, setIsPersonalized] = useState(false);
   const [isTranslated, setIsTranslated] = useState(false);
@@ -41,7 +44,7 @@ export default function ContentControls({ contentId, originalContent }: ContentC
   const handlePersonalize = async () => {
     if (!user) {
       alert('Please sign in to personalize content');
-      window.location.href = '/signin';
+      window.location.href = `${baseUrl}signin`;
       return;
     }
 
