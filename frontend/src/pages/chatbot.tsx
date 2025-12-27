@@ -125,12 +125,13 @@ export default function Chatbot() {
                 <div className={styles.sources}>
                   <div className={styles.sourcesHeader}>📚 Sources:</div>
                   {message.sources.map((source, idx) => {
-                    // Remove leading slash so Link component can properly add baseUrl
+                    // Construct full path with baseUrl
                     const cleanUrl = source.url.startsWith('/') ? source.url.substring(1) : source.url;
+                    const fullPath = `${baseUrl}${cleanUrl}`;
                     return (
                       <div key={idx} className={styles.source}>
                         <Link
-                          to={cleanUrl}
+                          to={fullPath}
                           className={styles.sourceLink}
                         >
                           {source.module} - {source.chapter}
