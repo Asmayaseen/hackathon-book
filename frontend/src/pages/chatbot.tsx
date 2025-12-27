@@ -127,13 +127,17 @@ export default function Chatbot() {
                 <div className={styles.sources}>
                   <div className={styles.sourcesHeader}>📚 Sources:</div>
                   {message.sources.map((source, idx) => {
-                    // Construct full path with baseUrl
-                    const cleanUrl = source.url.startsWith('/') ? source.url.substring(1) : source.url;
-                    const fullPath = `${baseUrl}${cleanUrl}`;
+                    // Construct URL: remove leading slash from backend URL
+                    let cleanUrl = source.url.startsWith('/') ? source.url.substring(1) : source.url;
+
+                    // Build full URL with current origin and baseUrl
+                    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+                    const fullUrl = `${origin}${baseUrl}${cleanUrl}`;
+
                     return (
                       <div key={idx} className={styles.source}>
                         <a
-                          href={fullPath}
+                          href={fullUrl}
                           className={styles.sourceLink}
                         >
                           {source.module} - {source.chapter}
