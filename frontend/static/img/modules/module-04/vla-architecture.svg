@@ -1,81 +1,98 @@
-<svg width="700" height="500" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="700" height="500" fill="#0A0A0A"/>
+<svg width="900" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- White Background -->
+  <rect width="900" height="600" fill="#FFFFFF" stroke="#00D4FF" stroke-width="3"/>
 
   <!-- Title -->
-  <text x="350" y="30" font-family="Arial, sans-serif" font-size="20" fill="#00D4FF" text-anchor="middle" font-weight="bold">Vision-Language-Action (VLA) Architecture</text>
+  <text x="450" y="35" font-family="Arial, sans-serif" font-size="24" fill="#1A1A1A" text-anchor="middle" font-weight="bold">Vision-Language-Action (VLA) Architecture</text>
 
-  <!-- Input Modalities -->
-  <text x="350" y="65" font-family="Arial, sans-serif" font-size="14" fill="#8A2BE2" text-anchor="middle" font-weight="bold">Input Modalities</text>
+  <!-- Input Modalities Section -->
+  <text x="450" y="70" font-family="Arial, sans-serif" font-size="16" fill="#8A2BE2" text-anchor="middle" font-weight="bold">Multimodal Input Layer</text>
 
-  <rect x="50" y="80" width="140" height="80" fill="#1A1A1A" stroke="#00D4FF" stroke-width="2" rx="5"/>
-  <text x="120" y="105" font-family="Arial, sans-serif" font-size="13" fill="#00D4FF" text-anchor="middle" font-weight="bold">Voice Input</text>
-  <text x="120" y="125" font-family="Arial, sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">Whisper API</text>
-  <text x="120" y="145" font-family="Arial, sans-serif" font-size="10" fill="#8A2BE2" text-anchor="middle">"Pick up the cup"</text>
+  <!-- Voice Input -->
+  <rect x="50" y="90" width="170" height="90" fill="#E0F7FF" stroke="#00D4FF" stroke-width="3" rx="8"/>
+  <text x="135" y="115" font-family="Arial, sans-serif" font-size="15" fill="#00D4FF" text-anchor="middle" font-weight="bold">🎤 Voice</text>
+  <text x="135" y="138" font-family="Arial, sans-serif" font-size="12" fill="#1A1A1A" text-anchor="middle">Whisper API</text>
+  <text x="135" y="158" font-family="Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Speech → Text</text>
+  <text x="135" y="173" font-family="Arial, sans-serif" font-size="10" fill="#8A2BE2" text-anchor="middle">"Pick up the cup"</text>
 
-  <rect x="210" y="80" width="140" height="80" fill="#1A1A1A" stroke="#00D4FF" stroke-width="2" rx="5"/>
-  <text x="280" y="105" font-family="Arial, sans-serif" font-size="13" fill="#00D4FF" text-anchor="middle" font-weight="bold">Visual Input</text>
-  <text x="280" y="125" font-family="Arial, sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">CLIP Encoder</text>
-  <text x="280" y="145" font-family="Arial, sans-serif" font-size="10" fill="#8A2BE2" text-anchor="middle">RGB-D + Segmentation</text>
+  <!-- Visual Input -->
+  <rect x="240" y="90" width="170" height="90" fill="#E0F7FF" stroke="#00D4FF" stroke-width="3" rx="8"/>
+  <text x="325" y="115" font-family="Arial, sans-serif" font-size="15" fill="#00D4FF" text-anchor="middle" font-weight="bold">👁 Vision</text>
+  <text x="325" y="138" font-family="Arial, sans-serif" font-size="12" fill="#1A1A1A" text-anchor="middle">CLIP / GPT-4V</text>
+  <text x="325" y="158" font-family="Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">RGB-D + Semantic</text>
+  <text x="325" y="173" font-family="Arial, sans-serif" font-size="10" fill="#8A2BE2" text-anchor="middle">Object detection</text>
 
-  <rect x="370" y="80" width="140" height="80" fill="#1A1A1A" stroke="#00D4FF" stroke-width="2" rx="5"/>
-  <text x="440" y="105" font-family="Arial, sans-serif" font-size="13" fill="#00D4FF" text-anchor="middle" font-weight="bold">Gesture Input</text>
-  <text x="440" y="125" font-family="Arial, sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">MediaPipe</text>
-  <text x="440" y="145" font-family="Arial, sans-serif" font-size="10" fill="#8A2BE2" text-anchor="middle">21 hand landmarks</text>
+  <!-- Gesture Input -->
+  <rect x="430" y="90" width="170" height="90" fill="#E0F7FF" stroke="#00D4FF" stroke-width="3" rx="8"/>
+  <text x="515" y="115" font-family="Arial, sans-serif" font-size="15" fill="#00D4FF" text-anchor="middle" font-weight="bold">✋ Gesture</text>
+  <text x="515" y="138" font-family="Arial, sans-serif" font-size="12" fill="#1A1A1A" text-anchor="middle">MediaPipe</text>
+  <text x="515" y="158" font-family="Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Hand tracking</text>
+  <text x="515" y="173" font-family="Arial, sans-serif" font-size="10" fill="#8A2BE2" text-anchor="middle">21 landmarks</text>
 
-  <rect x="530" y="80" width="140" height="80" fill="#1A1A1A" stroke="#00D4FF" stroke-width="2" rx="5"/>
-  <text x="600" y="105" font-family="Arial, sans-serif" font-size="13" fill="#00D4FF" text-anchor="middle" font-weight="bold">Text Input</text>
-  <text x="600" y="125" font-family="Arial, sans-serif" font-size="11" fill="#FFFFFF" text-anchor="middle">Natural Language</text>
-  <text x="600" y="145" font-family="Arial, sans-serif" font-size="10" fill="#8A2BE2" text-anchor="middle">Task descriptions</text>
+  <!-- Text Input -->
+  <rect x="620" y="90" width="170" height="90" fill="#E0F7FF" stroke="#00D4FF" stroke-width="3" rx="8"/>
+  <text x="705" y="115" font-family="Arial, sans-serif" font-size="15" fill="#00D4FF" text-anchor="middle" font-weight="bold">📝 Text</text>
+  <text x="705" y="138" font-family="Arial, sans-serif" font-size="12" fill="#1A1A1A" text-anchor="middle">Natural Language</text>
+  <text x="705" y="158" font-family="Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Task commands</text>
+  <text x="705" y="173" font-family="Arial, sans-serif" font-size="10" fill="#8A2BE2" text-anchor="middle">Written instructions</text>
 
   <!-- Arrows to LLM -->
   <defs>
-    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
-      <polygon points="0 0, 8 3, 0 6" fill="#00D4FF"/>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#8A2BE2"/>
     </marker>
   </defs>
-  <line x1="120" y1="160" x2="200" y2="195" stroke="#00D4FF" stroke-width="2" marker-end="url(#arr)"/>
-  <line x1="280" y1="160" x2="280" y2="195" stroke="#00D4FF" stroke-width="2" marker-end="url(#arr)"/>
-  <line x1="440" y1="160" x2="360" y2="195" stroke="#00D4FF" stroke-width="2" marker-end="url(#arr)"/>
-  <line x1="600" y1="160" x2="500" y2="195" stroke="#00D4FF" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="135" y1="180" x2="200" y2="220" stroke="#8A2BE2" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="325" y1="180" x2="325" y2="220" stroke="#8A2BE2" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="515" y1="180" x2="450" y2="220" stroke="#8A2BE2" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="705" y1="180" x2="600" y2="220" stroke="#8A2BE2" stroke-width="2" marker-end="url(#arrow)"/>
 
   <!-- LLM Planning Layer -->
-  <rect x="150" y="195" width="400" height="100" fill="#1A1A1A" stroke="#8A2BE2" stroke-width="3" rx="8"/>
-  <text x="350" y="220" font-family="Arial, sans-serif" font-size="16" fill="#8A2BE2" text-anchor="middle" font-weight="bold">Large Language Model (GPT-4)</text>
-  <text x="350" y="245" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF" text-anchor="middle">Task Planning & Reasoning (ReAct Pattern)</text>
-  <text x="350" y="270" font-family="Arial, sans-serif" font-size="11" fill="#00D4FF" text-anchor="middle">1. Thought: "I need to localize the cup first"</text>
-  <text x="350" y="285" font-family="Arial, sans-serif" font-size="11" fill="#00D4FF" text-anchor="middle">2. Action: call vision_grounding_service(object="cup")</text>
+  <rect x="100" y="220" width="700" height="120" fill="#F0E6FF" stroke="#8A2BE2" stroke-width="4" rx="10"/>
+  <text x="450" y="250" font-family="Arial, sans-serif" font-size="18" fill="#8A2BE2" text-anchor="middle" font-weight="bold">🧠 Large Language Model (GPT-4 / Claude)</text>
+  <text x="450" y="275" font-family="Arial, sans-serif" font-size="14" fill="#1A1A1A" text-anchor="middle">Task Planning & Chain-of-Thought Reasoning</text>
+  <text x="450" y="298" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">1. Thought: "User wants me to grasp the red cup on the left shelf"</text>
+  <text x="450" y="316" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">2. Action: call vision_grounding(object="red cup", location="left shelf")</text>
+  <text x="450" y="332" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">3. Observation: Cup detected at pose (x=0.5, y=-0.3, z=1.2)</text>
 
-  <!-- Arrow to Action Primitives -->
-  <line x1="350" y1="295" x2="350" y2="325" stroke="#8A2BE2" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- Arrow to Action Layer -->
+  <line x1="450" y1="340" x2="450" y2="375" stroke="#8A2BE2" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="490" y="365" font-family="Arial, sans-serif" font-size="12" fill="#8A2BE2" text-anchor="start">Decompose into primitives</text>
 
-  <!-- Action Primitives -->
-  <text x="350" y="345" font-family="Arial, sans-serif" font-size="14" fill="#8A2BE2" text-anchor="middle" font-weight="bold">Action Primitives</text>
+  <!-- Action Primitives Layer -->
+  <text x="450" y="400" font-family="Arial, sans-serif" font-size="16" fill="#00D4FF" text-anchor="middle" font-weight="bold">Robot Action Primitives</text>
 
-  <rect x="50" y="360" width="130" height="70" fill="#1A1A1A" stroke="#00D4FF" stroke-width="2" rx="5"/>
-  <text x="115" y="380" font-family="Arial, sans-serif" font-size="12" fill="#00D4FF" text-anchor="middle" font-weight="bold">Move</text>
-  <text x="115" y="400" font-family="Arial, sans-serif" font-size="10" fill="#FFFFFF" text-anchor="middle">move_to(x, y, z)</text>
-  <text x="115" y="415" font-family="Arial, sans-serif" font-size="9" fill="#8A2BE2" text-anchor="middle">Path planning</text>
+  <rect x="50" y="415" width="180" height="80" fill="#E0F7FF" stroke="#00D4FF" stroke-width="3" rx="8"/>
+  <text x="140" y="440" font-family="Arial, sans-serif" font-size="14" fill="#00D4FF" text-anchor="middle" font-weight="bold">Navigate</text>
+  <text x="140" y="462" font-family="Arial, sans-serif" font-size="11" fill="#1A1A1A" text-anchor="middle">navigate_to(goal)</text>
+  <text x="140" y="480" font-family="Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">Nav2 + costmap</text>
 
-  <rect x="195" y="360" width="130" height="70" fill="#1A1A1A" stroke="#00D4FF" stroke-width="2" rx="5"/>
-  <text x="260" y="380" font-family="Arial, sans-serif" font-size="12" fill="#00D4FF" text-anchor="middle" font-weight="bold">Grasp</text>
-  <text x="260" y="400" font-family="Arial, sans-serif" font-size="10" fill="#FFFFFF" text-anchor="middle">grasp(pose, force)</text>
-  <text x="260" y="415" font-family="Arial, sans-serif" font-size="9" fill="#8A2BE2" text-anchor="middle">Inverse kinematics</text>
+  <rect x="250" y="415" width="180" height="80" fill="#E0F7FF" stroke="#00D4FF" stroke-width="3" rx="8"/>
+  <text x="340" y="440" font-family="Arial, sans-serif" font-size="14" fill="#00D4FF" text-anchor="middle" font-weight="bold">Reach</text>
+  <text x="340" y="462" font-family="Arial, sans-serif" font-size="11" fill="#1A1A1A" text-anchor="middle">move_to(x, y, z)</text>
+  <text x="340" y="480" font-family="Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">Path planning</text>
 
-  <rect x="340" y="360" width="130" height="70" fill="#1A1A1A" stroke="#00D4FF" stroke-width="2" rx="5"/>
-  <text x="405" y="380" font-family="Arial, sans-serif" font-size="12" fill="#00D4FF" text-anchor="middle" font-weight="bold">Place</text>
-  <text x="405" y="400" font-family="Arial, sans-serif" font-size="10" fill="#FFFFFF" text-anchor="middle">place_at(target)</text>
-  <text x="405" y="415" font-family="Arial, sans-serif" font-size="9" fill="#8A2BE2" text-anchor="middle">Collision check</text>
+  <rect x="450" y="415" width="180" height="80" fill="#E0F7FF" stroke="#00D4FF" stroke-width="3" rx="8"/>
+  <text x="540" y="440" font-family="Arial, sans-serif" font-size="14" fill="#00D4FF" text-anchor="middle" font-weight="bold">Grasp</text>
+  <text x="540" y="462" font-family="Arial, sans-serif" font-size="11" fill="#1A1A1A" text-anchor="middle">grasp(pose, force)</text>
+  <text x="540" y="480" font-family="Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">Inverse kinematics</text>
 
-  <rect x="485" y="360" width="130" height="70" fill="#1A1A1A" stroke="#00D4FF" stroke-width="2" rx="5"/>
-  <text x="550" y="380" font-family="Arial, sans-serif" font-size="12" fill="#00D4FF" text-anchor="middle" font-weight="bold">Navigate</text>
-  <text x="550" y="400" font-family="Arial, sans-serif" font-size="10" fill="#FFFFFF" text-anchor="middle">navigate_to(goal)</text>
-  <text x="550" y="415" font-family="Arial, sans-serif" font-size="9" fill="#8A2BE2" text-anchor="middle">Nav2 stack</text>
+  <rect x="650" y="415" width="180" height="80" fill="#E0F7FF" stroke="#00D4FF" stroke-width="3" rx="8"/>
+  <text x="740" y="440" font-family="Arial, sans-serif" font-size="14" fill="#00D4FF" text-anchor="middle" font-weight="bold">Place</text>
+  <text x="740" y="462" font-family="Arial, sans-serif" font-size="11" fill="#1A1A1A" text-anchor="middle">place_at(target)</text>
+  <text x="740" y="480" font-family="Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">Collision check</text>
 
-  <!-- Arrow to ROS 2 Layer -->
-  <line x1="350" y1="430" x2="350" y2="455" stroke="#00D4FF" stroke-width="2" marker-end="url(#arr)"/>
+  <!-- Arrow to ROS Layer -->
+  <line x1="450" y1="495" x2="450" y2="525" stroke="#00D4FF" stroke-width="3" marker-end="url(#arrow)"/>
 
   <!-- ROS 2 Execution Layer -->
-  <rect x="150" y="455" width="400" height="35" fill="#1A1A1A" stroke="#00D4FF" stroke-width="2" rx="5"/>
-  <text x="350" y="478" font-family="Arial, sans-serif" font-size="13" fill="#00D4FF" text-anchor="middle" font-weight="bold">ROS 2 Action Servers & Controllers (ros2_control)</text>
+  <rect x="100" y="525" width="700" height="50" fill="#E0F7FF" stroke="#00D4FF" stroke-width="3" rx="8"/>
+  <text x="450" y="555" font-family="Arial, sans-serif" font-size="16" fill="#00D4FF" text-anchor="middle" font-weight="bold">ROS 2 Control Layer (ros2_control + MoveIt 2)</text>
+
+  <!-- Legend -->
+  <rect x="50" y="15" width="15" height="15" fill="#E0F7FF" stroke="#00D4FF" stroke-width="2"/>
+  <text x="75" y="27" font-family="Arial, sans-serif" font-size="11" fill="#1A1A1A" text-anchor="start">Perception/Planning</text>
+
+  <rect x="200" y="15" width="15" height="15" fill="#F0E6FF" stroke="#8A2BE2" stroke-width="2"/>
+  <text x="225" y="27" font-family="Arial, sans-serif" font-size="11" fill="#1A1A1A" text-anchor="start">LLM Reasoning</text>
 </svg>

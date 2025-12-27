@@ -6,6 +6,8 @@ Welcome to Module 4, where we explore the convergence of Large Language Models (
 
 Vision-Language-Action (VLA) models unify three critical modalities: visual perception (cameras, depth sensors), natural language understanding (speech, text), and motor control (joint actuation, grasping). Unlike traditional robotics pipelines where perception, planning, and control operate independently, VLA architectures learn joint representations that map directly from multimodal inputs to robot actions. This end-to-end approach enables behaviors like "Pick up the red mug on the left shelf"—requiring visual grounding (identifying "red mug"), spatial reasoning ("left shelf"), and manipulation planning (grasp trajectory).
 
+![Vision-Language-Action Integration](/img/ai-5.png)
+
 ## What is VLA?
 
 ![VLA Architecture](/img/modules/module-04/vla-architecture.svg)

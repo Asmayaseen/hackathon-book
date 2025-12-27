@@ -49,10 +49,10 @@ export default function ContentControls({ contentId, originalContent }: ContentC
     try {
       const API_URL = process.env.NODE_ENV === 'production'
         ? 'https://hackathon-book-api.onrender.com/api'
-        : 'http://172.24.5.28:8000/api';
+        : 'http://localhost:8000/api';
 
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_URL}/personalize`, {
+      const response = await fetch(`${API_URL}/personalize/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export default function ContentControls({ contentId, originalContent }: ContentC
     try {
       const API_URL = process.env.NODE_ENV === 'production'
         ? 'https://hackathon-book-api.onrender.com/api'
-        : 'http://172.24.5.28:8000/api';
+        : 'http://localhost:8000/api';
 
       const response = await fetch(`${API_URL}/translate/urdu`, {
         method: 'POST',

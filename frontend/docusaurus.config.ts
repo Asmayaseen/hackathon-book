@@ -98,6 +98,16 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: '/personalize-content',
+          label: 'Personalize Content',
+          position: 'left',
+        },
+        {
+          to: '/translate',
+          label: 'Urdu Translation',
+          position: 'left',
+        },
+        {
           to: '/chatbot',
           label: 'AI Tutor',
           position: 'left',

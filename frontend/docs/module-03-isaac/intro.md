@@ -4,6 +4,8 @@
 
 The NVIDIA Isaac platform represents the cutting edge of GPU-accelerated robotics development, providing a comprehensive ecosystem for building, simulating, and deploying intelligent robots. This module introduces you to the three pillars of the Isaac platform and their synergistic capabilities in advancing Physical AI applications.
 
+![NVIDIA Isaac Platform](/img/ai-4.png)
+
 ## The Isaac Ecosystem
 
 ![NVIDIA Isaac Workflow](/img/modules/module-03/isaac-workflow.svg)
