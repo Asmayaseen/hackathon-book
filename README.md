@@ -1,6 +1,7 @@
 # Physical AI & Humanoid Robotics - Educational Textbook
 
 **Master the Future of Embodied Intelligence - From ROS 2 to NVIDIA Isaac**
+Maintained by Asma Yaseen — Coordinator, Governor Sindh Initiative (GIAIC)
 
 A comprehensive, interactive educational platform for learning Physical AI and Humanoid Robotics, featuring a Cyber Neon-themed Docusaurus textbook with RAG-powered AI assistant, personalized learning paths, and multilingual support.
 
@@ -413,9 +414,12 @@ After completing this course, students will be able to:
 
 ## 👥 Contributors
 
-- **Project Lead**: [Your Name]
-- **Technology**: Spec-Kit Plus + Claude Code
-- **Hackathon**: Physical AI & Humanoid Robotics
+Project Lead & Coordinator: Asma Yaseen  
+Coordinator – Governor Sindh Initiative (GIAIC)
+
+Technology: Spec-Kit Plus + Claude Code   
+Hackathon: Physical AI & Humanoid Robotics
+
 
 ## 📄 License
 
@@ -441,3 +445,4 @@ For questions or issues:
 **Built with ⚡ Spec-Kit Plus & 🤖 Claude Code**
 **Theme: Cyber Neon 💜💙**
 **Target:  300/300 Points**
+
